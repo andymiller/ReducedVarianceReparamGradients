@@ -1,2 +1,4 @@
 # ReducedVarianceReparamGradients
-Reducing Reparameterization Gradient Variance code. 
+
+Code for ``Reducing Reparameterization Gradient Variance``
+
