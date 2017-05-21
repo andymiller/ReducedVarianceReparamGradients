@@ -1,6 +1,8 @@
 """
 Simple example script fitting a model for synthetic data
 """
+from __future__ import print_function
+
 import autograd.numpy as np
 from aip.vi.bbvi_mvn_diag import DiagMvnBBVI
 from aip.gsmooth.opt import FilteredOptimization
@@ -15,7 +17,7 @@ import models
 #lnpdf, D = make_model()
 lnpdf, D, name = models.set_lnpdf("frisk")
 th0 = np.random.randn(D)
-print lnpdf(th0)   # example use
+print(lnpdf(th0))   # example use
 
 # create bbvi object --- this just keeps references to lnpdf,
 # grad(lnpdf), hvp(lnpdf), etc
@@ -45,10 +47,10 @@ def run_timed_opt(gradfun, num_iters):
               grad_filter = AdamFilter(),
               fun         = lambda lam, t: 0.,
               callback    = lambda th, t, g: 0.)
-    print "  ... optimizing "
+    print("  ... optimizing ")
     mc_opt.run(num_iters=num_iters, step_size=step_size)
-    print "  ... wall time: %2.4f"%mc_opt.wall_clock
-    print "computing ELBO values"
+    print("  ... wall time: %2.4f" % mc_opt.wall_clock)
+    print("computing ELBO values")
 
     # compute ~ 50 equally spaced elbo values here
     skip = 16
@@ -60,7 +62,7 @@ def run_timed_opt(gradfun, num_iters):
 #################################################
 # define pure MC gradient function and optimize #
 #################################################
-print "\n ======== running MC, nsamps = %d =======" % n_samps
+print("\n ======== running MC, nsamps = %d =======" % n_samps)
 def mc_grad_fun(lam, t):
     eps = np.random.randn(n_samps, D)
     return -1.*cvg.construct_cv_grads(vbobj, lam, eps,
@@ -73,7 +75,7 @@ mc_vals, mc_wall_time, mc_opt = \
 ################################################
 # define RV-RGE gradient function and optimize #
 ################################################
-print "\n ======= running CV, nsamps = %d ======" % n_samps
+print("\n ======= running CV, nsamps = %d ======" % n_samps)
 def cv_gfun(lam, t):
     eps = np.random.randn(n_samps, D)
     return -1.*cvg.construct_cv_grads(vbobj, lam, eps,
