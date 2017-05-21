@@ -1,5 +1,5 @@
 import autograd.numpy as np
-from aip.models import baseball, frisk, uci, nn
+from aip.models import frisk, uci, nn
 from scipy.stats import multivariate_normal as mvn
 
 
