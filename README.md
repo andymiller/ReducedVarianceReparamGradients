@@ -1,6 +1,6 @@
 # ReducedVarianceReparamGradients
 
-Code for ``Reducing Reparameterization Gradient Variance``. 
+Code for [Reducing Reparameterization Gradient Variance](https://arxiv.org/abs/1705.07880).
 
 ### Abstract
 Optimization with noisy gradients has become ubiquitous in statistics and machine learning.  Reparameterization gradients, or gradient estimates computed via the "reparameterization trick," represent a class of noisy gradients often used in Monte Carlo variational inference (MCVI).  However, when these gradient estimators are too noisy, the optimization procedure can be slow or fail to converge.  One way to reduce noise is to use more samples for the gradient estimate, but this can be computationally expensive.  Instead, we view the noisy gradient as a random variable, and form an inexpensive approximation of the generating procedure for the gradient sample.  This approximation has high correlation with the noisy gradient by construction, making it a useful control variate for variance reduction.  We demonstrate our approach on non-conjugate multi-level hierarchical models and a Bayesian neural net where we observed gradient variance reductions of multiple orders of magnitude (20-2,000x).
